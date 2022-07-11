@@ -84,7 +84,7 @@ while read -r line; do
         # Create account
         useradd -m -g "$user_group" -G "$department" "$surname"
 
-        # create documents images videos archive dirs in user account
+        # user structure creating
         echo "[$(date +" %D %T") ] Creating directories for $surname">>$log_file
         count=0
 
@@ -97,21 +97,21 @@ while read -r line; do
             ((count++))
         done
 
-        # check if the user is in the given group
+        # is user in group?
         if id -nG "$surname" | grep -qw "$department"; then
             echo "[$(date +" %D %T") ] $surname belongs to $department">>$log_file
         else
             echo "[$(date +" %D %T") ] $surname does not belong to $department">>$log_file
-            # add user to
+            # add user to group
             usermod -G $department $surname
         fi
 
-        # check if the user is in the company group
+        # is user in company?
         if id -nG "$surname" | grep -qw "$company_group"; then
             echo "[$(date +" %D %T") ] $surname belongs to $company_group">>$log_file
         else
             echo "[$(date +" %D %T") ] $surname does not belong to $company_group">>$log_file
-            # add user to company group
+            # adding user to company
             usermod -G $company_group $surname
         fi
 
