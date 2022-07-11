@@ -10,9 +10,11 @@ former_emp_dir="/mnt/c/Users/Desktop/Test/"
 home_directory_contains=("documents" "images" "videos" "archive")
 
 log_file="info.log"
+
 # csv Datei Format
 # FamiliennameFirst-name;kürzel;personummer;addresse;PLZ;Geburi;abteilung;eintritt;austritt;
 
+#Hilfe von cousin -r
 
 while read -r line; do
     surname=$(echo "$line" | awk -F';' '{printf "%s", $1}' | tr -d '"')
